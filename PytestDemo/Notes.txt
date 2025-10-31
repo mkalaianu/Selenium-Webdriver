@@ -1,0 +1,138 @@
+Pytest is the most popular test framework engine for python
+-- avoid hardcoding data
+--external test data
+--POM
+--centralized reusuable code --- using utils.py or config.py
+--tags to run targeted test and run tests in parallel mode
+-- generate HTML reports
+--logs and screenshorts
+
+pip install pytest
+
+python file should start or ends with test_
+python file should have the code only inside the functions and functions should have the name "test_"
+
+to run, either in the pycharm console -> edit configurations on the top-> right click on python test
+and select the pytest framework and select the python file on the target field. then run it
+
+or run the command prompt, py.test-> run all the py test files
+py.test -v --> verbose will give more information about the test
+py.test -v -s --> to show the console logs
+py.test test_demo.py -v -s -- this will run only the particulat python file
+py.test -k second -v -s --- this will run all the methods inside all the python file with the name second
+
+grouping or marking the test
+import pytest
+@pytest.mark.smoke or regression   and py.test -m smoke -v -s
+@pytest.mark.skip --- skip this function and py.test -v -s
+@pytest.mark.xfail --- run the test but done put the status in report
+
+Fixtures:
+@pytest.fixtures
+def setup():
+    code....
+    yield
+    code...
+
+def test_firstpgm(setup)
+    code....
+Here setup will run first, then test_firstpgm and then code under the yield
+
+conftest.py --- this file fixture is accessible to all the py test files
+to run on all the functions inside the class -- @pytest.mark.usefixtures("setup")
+to run only before and after the class once --- in the conftest.py and @pytest.fixtures(scope="class")
+in the fixture you can send data in an list and send data in paramterization
+@pytest.fixture(params=[("chrome","mani"),("Edge", "mekalai")])
+
+to get HTML report,
+pip install pytest-html
+run py.test --html=report.html --- this will create report in the current folder
+
+refer this document to send the variable name during run time
+pytest "filename.py" --variable_name browsername
+
+to clear the warning like
+default fixture scope should be mentioned
+custom markers to default
+
+create file called pytest.ini
+[pytest]
+asyncio_default_fixture_loop_scope=function
+markers = smoke : smoke test
+
+to run test parallely, then download the plugin
+pip install pytest-xdist
+
+to run pytest -n 2  --- if there are 10 py test files then 100 will run parallely
+
+data_filepath = os.path.abspath("../files/test_e2e.json")
+with open(data_filepath) as f:
+    test_data = json.load(f)
+    test_list = test_data["data"]
+
+@pytest.mark.parametrize("test_list_item", test_list)
+def test_e2e(browserInstance, test_list_item):
+code
+
+Jenkins:
+first install the correct java version
+then download the correct jenkins.war from the google version suitable for java version
+go to cmd, then type java -jar jenkins.war --httpPort=9090
+once it is installed, then copy the password
+920c5ba655f147c99f9b0db7c3805ed9
+go to browser then host the local host http://localhost:9090 then follow the steps and install it.
+Manimekalai and M@nijenkins01
+then go to c:/users/hp/.jenkins/jobs === all the project created will be shown here
+
+then create a new item-> freestyle
+give the project path, then give the command in windows batch file
+then add paramaerisation
+pytest test_e2e.py -m smoke --browser_name=%Browser% --html=Reports/report.html
+
+Git -> go to git and create a new repository
+go to the below link to follow the git commands
+https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html
+
+the code needs to be pushed should be first placed in the Staging, then commit the stash code
+to place the new code in the new GITHUB repository,
+git init
+git add *
+git commit -m "first commit"
+git remote add origin "<git link>"
+git push -u origin master
+
+if second person in the team want to get the new code in his machine and update it, move to the same master branch
+git clone "<git link>"
+make the changes
+git add *
+git status = to know the file committed
+git commit -m "done by x persom"
+git push -u origin master
+
+if the first person wants to take the updated code,
+git pull origin master
+
+for the scenario, when the archttect works on the some major feature and the regression testing
+should run everyday
+git checkout -b "develop"
+make the changes
+git add *
+git commit -m "new changes"
+git push origin develop
+
+another person need to change in develop
+git pull origin develop
+git checkout develop
+git add *
+git commit -m "newwww"
+git push origin develop
+
+once everything is developed in develop, then merge
+git checkout master
+git pull origin master
+git merge develop
+
+
+
+
+

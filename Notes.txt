@@ -1,0 +1,78 @@
+First install the selenium package using PIP
+then all the classes and methods from the package will be added to the interpreter.
+
+webdriver is the package to invoke the brower and do all the operations on it.
+webdriver.chrome() ---- this will first install the chrome driver from the browser then webdriver
+will talk to the chrome driver service then chrome driver service will perform the action on the
+browser.
+
+In some instances, browser driver cannot be downloaded due to the vpn settings, in that time we need to manually
+the browser driver and set it in the code
+service_obj = Service("chrome_driver. exe path")
+driver = webdriver.chrome(service_obj)
+
+To indentify the HTML elements, we can idntify by name, ID, class name, Linktext, CSS selector, Xpath
+syntax for Xpath = //tagname[@attribute='value']
+synctax for CSS = tagname[attribute = 'value']
+otherways to identify CSS_selector = #ID_name
+CSS == .classname
+
+if there are mulitple elements then use index (//tagname[@attribute='value'])[3]
+to indentify   the link element, then the tagname should have a_
+
+from parent to child,
+in Xpath //form/div[2]/input
+in CSS form div:nth_child(2) input
+
+if you identify by text, then use Xpath
+//button[text()=""]
+
+in dropdown, static and dynamic (auto suggestive)
+when the static dropdown element has a tag "select", then use the select class
+dropdown = select(driver.findelement(By.ID, ""))
+dropdown.select by index, select by visible text, select by value
+
+in dynamic dropdowns, first find the elements and send keys, it will return an array
+then do for loop to iterate each and every web element, do if loop to see if the text is the same which
+we want to select, the break the loop
+do assert and see if the correct text is displayed, but here text cannot be used. Here
+use getattribute("value")
+
+for radiobutton and checkboxes, we can use is_selected and is_displayed
+
+Alerts--java popups
+first you need to switch to alert popup
+alert = driver.Switch to alert
+alert.accept() -- click on OK
+alert.dismiss() -- click on cancel
+alert.text()
+
+
+use ActionChains class, we can use right click, double click, drag and drop, left click, click and hold
+whennever we use action class, then we need to use perfrom
+
+to handle the child window and tab,
+driver.switchto.window(window name)
+window name can be fetched using window handles
+driver.windowhandles
+
+to handle the frames
+driver.switch to. frame(id or name)
+driver.switch to. default context
+
+Java script: all the chrome are designed using java script
+some of the functions are not available using selenium python so we need to user java script
+for that go to browser-> console and type window.scrollBy(0,500)
+in python selenium use the function driver.execute_script("JS code;")
+to get screenshots get_screenshot as file("screen.png")
+
+chromeoptions -- used to make the chrome to run in headless mode --- no browser will invoke during execution
+also use to ignore ceritifcation error
+chrome options = webdriver.chromeoptions()
+chrome option.addargument("headless")
+
+webdriver.Chrome(options=chrome options)
+in console also we can write the xpath, $x()
+
+To work with excel file, first we need to install the package
+openpyxl

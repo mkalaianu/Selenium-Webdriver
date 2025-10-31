@@ -1,0 +1,21 @@
+{
+  "data": [
+    {
+      "user_name": "platform-owner@cosmicnode.com",
+      "password" : "dUOktEGlWaWj_EIzumoiH#",
+      "url" : "https://staging-infinity.cosmicnode.com/login",
+      "tenant_name" : "Tenant CBA",
+      "ta_password" : 12345
+    },
+    {
+      "user_name": "platform-owner@cosmicnode.com",
+      "password" : "dUOktEGlWaWj_EIzumoiH#",
+      "url" : "https://staging-infinity.cosmicnode.com/login",
+      "tenant_name" : "Tenant CCC",
+      "ta_password" : 12345
+    }
+
+
+  ]
+}
+
